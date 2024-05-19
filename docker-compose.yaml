@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  robe-chat:
+    image: 1596944197/robe-chat
+    container_name: robe-chat
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - '3210:3210'
+    environment:
+      - NODE_ENV=production
+      - ALLOWED_ORIGINS=http://127.0.0.1:1002
+    restart: always
