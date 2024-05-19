@@ -10,8 +10,6 @@ const API_PROXY_ENDPOINT = process.env.API_PROXY_ENDPOINT || '';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH;
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS || '';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath,
@@ -111,7 +109,7 @@ const nextConfig = {
             value: 'X-Requested-With, Content-Type, Accept, Origin, Authorization',
           },
           { key: 'Access-Control-Allow-Methods', value: 'GET, POST, PUT, DELETE, OPTIONS' },
-          { key: 'Access-Control-Allow-Origin', value: allowedOrigins },
+          { key: 'Access-Control-Allow-Origin', value: "*" },
         ],
         source: '/(.*)',
       },

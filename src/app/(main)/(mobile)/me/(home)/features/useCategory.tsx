@@ -3,10 +3,9 @@ import {
   Book,
   CircleUserRound,
   Database,
-  Download,
   Feather,
   LogOut,
-  Settings2,
+  Settings2
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
@@ -22,7 +21,7 @@ import { useCategory as useSettingsCategory } from '../../settings/features/useC
 
 export const useCategory = () => {
   const router = useRouter();
-  const { canInstall, install } = usePWAInstall();
+  const { canInstall } = usePWAInstall();
   const { t } = useTranslation(['common', 'setting', 'auth']);
   const [isLogin, isLoginWithAuth, isLoginWithClerk, enableAuth, signOut, isLoginWithNextAuth] =
     useUserStore((s) => [
@@ -56,12 +55,6 @@ export const useCategory = () => {
   ];
 
   const pwa: CellProps[] = [
-    {
-      icon: Download,
-      key: 'pwa',
-      label: t('installPWA'),
-      onClick: () => install(),
-    },
     {
       type: 'divider',
     },

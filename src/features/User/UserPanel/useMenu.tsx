@@ -5,7 +5,6 @@ import {
   Book,
   CircleUserRound,
   Cloudy,
-  Download,
   Feather,
   HardDriveDownload,
   HardDriveUpload,
@@ -13,7 +12,7 @@ import {
   LogOut,
   Mail,
   Maximize,
-  Settings2,
+  Settings2
 } from 'lucide-react';
 import Link from 'next/link';
 import { PropsWithChildren, memo } from 'react';
@@ -69,7 +68,7 @@ const NewVersionBadge = memo(
 
 export const useMenu = () => {
   const router = useQueryRoute();
-  const { canInstall, install } = usePWAInstall();
+  const { canInstall } = usePWAInstall();
   const hasNewVersion = useNewVersion();
   const openSettings = useOpenSettings();
   const { t } = useTranslation(['common', 'setting', 'auth']);
@@ -118,12 +117,6 @@ export const useMenu = () => {
   /* ↑ cloud slot ↑ */
 
   const pwa: MenuProps['items'] = [
-    {
-      icon: <Icon icon={Download} />,
-      key: 'pwa',
-      label: t('installPWA'),
-      onClick: () => install(),
-    },
     {
       type: 'divider',
     },
