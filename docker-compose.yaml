@@ -11,5 +11,5 @@ services:
       - '3210:3210'
     environment:
       - NODE_ENV=production
-      - ALLOWED_ORIGINS=http://127.0.0.1:1002
+      - ALLOWED_ORIGINS=https://mh33.top
     restart: always

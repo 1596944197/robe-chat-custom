@@ -3,7 +3,6 @@ import { Badge } from 'antd';
 import {
   Book,
   CircleUserRound,
-  Download,
   Feather,
   HardDriveDownload,
   HardDriveUpload,
@@ -56,7 +55,7 @@ const NewVersionBadge = memo(
 
 export const useMenu = () => {
   const router = useQueryRoute();
-  const { canInstall, install } = usePWAInstall();
+  const { canInstall } = usePWAInstall();
   const hasNewVersion = useNewVersion();
   const openSettings = useOpenSettings();
   const { t } = useTranslation(['common', 'setting', 'auth']);
@@ -100,12 +99,6 @@ export const useMenu = () => {
   ];
 
   const pwa: MenuProps['items'] = [
-    {
-      icon: <Icon icon={Download} />,
-      key: 'pwa',
-      label: t('installPWA'),
-      onClick: () => install(),
-    },
     {
       type: 'divider',
     },
