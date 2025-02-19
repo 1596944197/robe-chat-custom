@@ -1,15 +1,9 @@
+import { PortalArtifact } from '@/types/artifact';
+
 export interface PortalFile {
   chunkId?: string;
   chunkText?: string;
   fileId: string;
-}
-
-export interface PortalArtifact {
-  children?: string;
-  id: string;
-  identifier?: string;
-  title?: string;
-  type?: string;
 }
 
 export interface ChatPortalState {
@@ -17,6 +11,7 @@ export interface ChatPortalState {
   portalArtifactDisplayMode?: 'code' | 'preview';
   portalFile?: PortalFile;
   portalMessageDetail?: string;
+  portalThreadId?: string;
   portalToolMessage?: { id: string; identifier: string };
   showPortal: boolean;
 }

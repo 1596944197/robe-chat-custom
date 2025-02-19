@@ -50,20 +50,9 @@ export class DiscoverService {
   };
 
   getAssistantList = async (locale: Locales): Promise<DiscoverAssistantItem[]> => {
-    let res = await fetch(this.assistantStore.getAgentIndexUrl(locale), {
-      next: { revalidate },
-    });
+    const json = await this.assistantStore.getAgentIndex(locale, revalidate);
 
-    if (!res.ok) {
-      res = await fetch(this.assistantStore.getAgentIndexUrl(DEFAULT_LANG), {
-        next: { revalidate },
-      });
-    }
-
-    if (!res.ok) return [];
-
-    const json = await res.json();
-
+    // @ts-expect-error 目前类型不一致，未来要统一
     return json.agents;
   };
 
@@ -212,7 +201,7 @@ export class DiscoverService {
   // Providers
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getProviderList = async (locale: Locales): Promise<DiscoverProviderItem[]> => {
+  getProviderList = async (_locale: Locales): Promise<DiscoverProviderItem[]> => {
     const list = DEFAULT_MODEL_PROVIDER_LIST.filter((item) => item.chatModels.length > 0);
     return list.map((item) => {
       const provider = {

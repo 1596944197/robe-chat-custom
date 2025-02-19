@@ -24,6 +24,7 @@ const artifactTitle = (s: ChatStoreState) => s.portalArtifact?.title;
 const artifactIdentifier = (s: ChatStoreState) => s.portalArtifact?.identifier || '';
 const artifactMessageId = (s: ChatStoreState) => s.portalArtifact?.id;
 const artifactType = (s: ChatStoreState) => s.portalArtifact?.type;
+const artifactCodeLanguage = (s: ChatStoreState) => s.portalArtifact?.language;
 
 const artifactMessageContent = (id: string) => (s: ChatStoreState) => {
   const message = chatSelectors.getMessageById(id)(s);
@@ -34,7 +35,12 @@ const artifactCode = (id: string) => (s: ChatStoreState) => {
   const messageContent = artifactMessageContent(id)(s);
   const result = messageContent.match(ARTIFACT_TAG_REGEX);
 
-  return result?.groups?.content || '';
+  let content = result?.groups?.content || '';
+
+  // Remove markdown code block if content is wrapped
+  content = content.replace(/^\s*```[^\n]*\n([\S\s]*?)\n```\s*$/, '$1');
+
+  return content;
 };
 
 const isArtifactTagClosed = (id: string) => (s: ChatStoreState) => {
@@ -67,5 +73,8 @@ export const chatPortalSelectors = {
   artifactType,
   artifactCode,
   artifactMessageContent,
+  artifactCodeLanguage,
   isArtifactTagClosed,
 };
+
+export * from './selectors/thread';

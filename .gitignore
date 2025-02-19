@@ -61,5 +61,11 @@ bun.lockb
 sitemap*.xml
 robots.txt
 
+# Serwist
+public/sw*
+public/swe-worker*
+
 *.patch
 *.pdf
+vertex-ai-key.json
+.pnpm-store

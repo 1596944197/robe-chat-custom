@@ -1,8 +1,9 @@
 import { StateCreator } from 'zustand/vanilla';
 
 import { ChatStore } from '@/store/chat/store';
+import { PortalArtifact } from '@/types/artifact';
 
-import { PortalArtifact, PortalFile } from './initialState';
+import { PortalFile } from './initialState';
 
 export interface ChatPortalAction {
   closeArtifact: () => void;
@@ -50,6 +51,7 @@ export const chatPortalSlice: StateCreator<
 
     set({ portalMessageDetail: messageId }, false, 'openMessageDetail');
   },
+
   openToolUI: (id, identifier) => {
     get().togglePortal(true);
 
